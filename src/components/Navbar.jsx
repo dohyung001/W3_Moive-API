@@ -11,7 +11,7 @@ function Navbar() {
       <UPNavbarLists>
         <UPNavbarList>회원가입</UPNavbarList>
 
-        {/* warning */}
+        {/* 현재 결로가 일치하면 true active props로 전달*/}
         <UPNavbarList to="/now" active={(location.pathname === "/now").toString()}>Now Playing</UPNavbarList>
         <UPNavbarList to="/pop" active={(location.pathname === "/pop").toString()}>Popular</UPNavbarList>
         <UPNavbarList to="/top" active={(location.pathname === "/top").toString()}>Top Rated</UPNavbarList>
