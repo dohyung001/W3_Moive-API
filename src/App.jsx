@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { SyncLoader } from "react-spinners"
-import { CustomSyncLoaderPage } from '../src/components/styledComponents'
+
 import Navbar from '../src/components/Navbar';
 import Footer from '../src/components/Footer';
 
