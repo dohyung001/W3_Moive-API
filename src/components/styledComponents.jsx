@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { SyncLoader } from "react-spinners"
+
 
 export const Main = styled.div`
 background-color: rgb(34, 38, 76);
@@ -89,16 +89,25 @@ export const UPNavbarLists = styled.div`
 
 export const UPNavbarList = styled(Link)`
   font-size: large;
-  font-weight: 500;
+  font-weight: 400;
   padding-left: 20px;
   padding-right: 20px;
   &:hover {
     font-weight: bold;
   }
   text-decoration: none;
-  color: ${props => props.active === "true" ? "yellow" : "white"};
-
 `;
+
+export const UPNavbarListLogin = styled(UPNavbarList)`
+color:yellow;
+font-weight: 600;
+font-family: "Roboto", sans-serif;
+`
+export const UPNavbarListPage = styled(UPNavbarList)`
+  color: ${props => props.active === "true" ? "yellow" : "white"};
+  font-weight: ${props => props.active === "true" ? "bold" : "400"};
+`;
+
 export const DOWNFooter = styled.footer`
   padding-left: 20px;
   height: 60px;
@@ -170,3 +179,62 @@ export const CustomSyncLoaderPage = styled.div`
   align-items:center;
 
 `;
+
+export const MDPBackground = styled.div`
+width:100vw;
+height:100vh;
+background-color:rgb(34, 38, 76);
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+`
+
+export const MDPBackgroundImg = styled.img`
+width:100vw;
+height:100vh;
+position: absolute;
+opacity: 0.1;
+z-index: 100;
+`
+export const MDPContentWrapper = styled.div`
+width:80%;
+height:600px%;
+
+display:flex;
+align-items: center;
+justify-content: center;
+`
+
+export const MDPContent = styled.div`
+width:600px;
+height:600px;
+
+display:flex;
+flex-direction: column;
+
+padding-top: 100px;
+margin-left:100px;
+`
+export const MDPContentText = styled.p`
+font-size:25px;
+margin-top:35px;
+font-weight: 700;
+`
+export const MDPContentTextTitle = styled(MDPContentText)`
+font-size:35px;
+font-weight: 500;
+margin-bottom:10px;
+`
+
+export const MDPContentTextOverview = styled(MDPContentText)`
+font-size:20px;
+line-height: 1.5;
+font-weight: 400;
+`
+
+export const Notfoundbackground = styled(MDPBackground)`
+padding-top:400px;
+ flex-direction:column;
+ justify-content: start;
+`
