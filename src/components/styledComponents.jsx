@@ -238,3 +238,18 @@ padding-top:400px;
  flex-direction:column;
  justify-content: start;
 `
+
+export const MDPContentTextVote = styled(MDPContentText)`
+display:Flex;
+font-size:20px;
+line-height: 1.5;
+font-weight: 400;
+`
+
+export const MDPContentTextStars = styled.div`
+margin-left:10px;
+display:flex;
+justifiy-content:center;
+align-items:center;
+color:yellow;
+`
