@@ -6,6 +6,8 @@ import Navbar from '../src/components/Navbar';
 import Footer from '../src/components/Footer';
 
 import MainPage from './components/Mainpage';
+import SignupPage from '../src/components/SignupPage';
+
 import NowPlayingPage from '../src/components/NowPlayingPage';
 import PopularPage from '../src/components/PopularPage';
 import TopRatedPage from '../src/components/TopRatedPage';
@@ -25,7 +27,10 @@ function App() {
       <div>
         <Navbar />
         <Routes>
+
           <Route path="/" element={<MainPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+
           <Route path="/now" element={<NowPlayingPage />} />
           <Route path="/pop" element={<PopularPage />} />
           <Route path="/top" element={<TopRatedPage />} />
