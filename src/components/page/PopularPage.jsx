@@ -1,8 +1,8 @@
-import '../App.css';
-import MovieList from './MovieList';
+import '../../App.css';
+import MovieList from '../compo/MovieList';
 import {
   Main, CustomSyncLoaderPage
-} from './styledComponents';
+} from '../styledComponents';
 import { useState, useEffect } from 'react';
 import { SyncLoader } from 'react-spinners'; // 로딩 스피너 import
 

@@ -2,7 +2,7 @@ import Movie from './Moive.jsx'
 import {
   MovieListContainer
 
-} from './styledComponents.jsx';
+} from '../styledComponents.jsx';
 
 export default function MovieList({ movies }) {
   return (

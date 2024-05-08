@@ -1,4 +1,4 @@
-import { DOWNFooter, DOWNFooterText } from './styledComponents';
+import { DOWNFooter, DOWNFooterText } from '../styledComponents';;
 
 function Footer() {
   return (

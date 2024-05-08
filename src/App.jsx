@@ -2,26 +2,24 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Navbar from '../src/components/Navbar';
-import Footer from '../src/components/Footer';
+import Navbar from '../src/components/compo/Navbar';
+import Footer from '../src/components/compo/Footer';
 
-import MainPage from './components/Mainpage';
-import SignupPage from '../src/components/SignupPage';
+import MainPage from './components/page/Mainpage';
+import SignupPage from './components/page/SignupPage1';
+import LoginPage from './components/page/LoginPage';
 
-import NowPlayingPage from '../src/components/NowPlayingPage';
-import PopularPage from '../src/components/PopularPage';
-import TopRatedPage from '../src/components/TopRatedPage';
-import UpComingpage from './components/UpComingPage';
-import NotFoundPage from './components/NotFoundPage';
 
-import MoviedetailPage from './components/MoviedetailPage';
+import NowPlayingPage from '../src/components/page/NowPlayingPage';
+import PopularPage from '../src/components/page/PopularPage';
+import TopRatedPage from '../src/components/page/TopRatedPage';
+import UpComingpage from './components/page/UpComingPage';
+import NotFoundPage from './components/page/NotFoundPage';
+
+import MoviedetailPage from './components/page/MoviedetailPage';
 
 
 function App() {
-
-
-
-
   return (
     <Router>
       <div>
@@ -30,6 +28,7 @@ function App() {
 
           <Route path="/" element={<MainPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
 
           <Route path="/now" element={<NowPlayingPage />} />
           <Route path="/pop" element={<PopularPage />} />

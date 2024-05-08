@@ -8,7 +8,7 @@ import {
   MovieCoverSt,
   MovieCoverTitle,
   MovieCoverText
-} from './styledComponents';
+} from '../styledComponents';
 
 export default function Movie({ movie }) {
   const [isHover, setIsHover] = useState(false); //hover상태

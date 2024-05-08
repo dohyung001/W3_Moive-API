@@ -1,6 +1,6 @@
 import {
   Notfoundbackground, MDPContentTextTitle, MDPContentTextOverview, MDPContentText
-} from './styledComponents';
+} from '../styledComponents';
 import { useNavigate } from 'react-router-dom';
 
 

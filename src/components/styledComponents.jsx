@@ -74,6 +74,7 @@ export const MovieCoverText = styled.div`
 `;
 
 export const UPNavbar = styled.nav`
+position: stickey;
   height: 60px;
   background-color: rgb(23,25,50);
   display:flex;
@@ -108,7 +109,8 @@ export const UPNavbarListPage = styled(UPNavbarList)`
   font-weight: ${props => props.active === "true" ? "bold" : "400"};
 `;
 
-export const DOWNFooter = styled.footer`
+export const DOWNFooter = styled.footer
+  `position: stickey;
   padding-left: 20px;
   height: 60px;
   background-color: rgb(23,25,50);
@@ -159,6 +161,7 @@ export const FindInput = styled.input`
   border-radius: 25px;
   padding-left:20px;
   margin-right:20px;
+  color:black;
 `;
 export const FindInputButton = styled.div`
   width:30px;
@@ -251,5 +254,81 @@ margin-left:10px;
 display:flex;
 justifiy-content:center;
 align-items:center;
-color:yellow;
+`
+export const SignupPageBackground = styled(MDPBackground)`
+justify-content: center;
+align-items: start;
+padding-top: 30px;
+
+`
+export const SignupPageMainWrapper = styled.form`
+display:flex;
+flex-direction: column;
+width: 800px;
+height: 800px;
+
+align-items: center;
+`
+
+export const SignupPageTitle = styled.div`
+font-size:22px;
+margin-bottom:30px;
+`
+
+export const SignupPageInput = styled.input`
+width: 600px;
+height: 40px;
+border-radius:15px;
+margin-top: 20px;
+padding-left:20px;
+color:black;
+
+`
+export const SignupPageSubmit = styled.button`
+width: 630px;
+height: 45px;
+border-radius:15px;
+margin-top: 20px;
+margin-bottom: 40px;
+color:black;
+font-weight: 700;
+font-size:22px;
+`
+
+export const SignupPageSubLinks = styled.div`
+display: flex;
+padding-right:30px;
+justify-content: space-evenly;
+width: 600px;
+font-size:22px;
+`
+export const SignupPageLink = styled.div`
+font-size:20px;
+`
+export const SignupPageError = styled.div`
+margin-right:auto;
+margin-left:10px;
+margin-top:10px;
+color:red;
+`
+export const MovieSeach = styled.div`
+width: 1000px;
+height: 700px;
+background-color: rgb(23,25,50);
+border-radius: 10px;
+margin: 20px 40px 20px 40px;
+overflow-y: auto;
+
+
+&::-webkit-scrollbar {
+  width: 7px;
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: rgb(223,188,62); 
+  border-radius: 5px; }
+
+`
+export const MainPageMovieContainer = styled(MovieContainer)`
+
 `

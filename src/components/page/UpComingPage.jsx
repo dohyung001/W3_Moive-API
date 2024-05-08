@@ -1,15 +1,15 @@
-import '../App.css';
-import MovieList from './MovieList';
+import '../../App.css';
+import MovieList from '../compo/MovieList';
 import {
   Main, CustomSyncLoaderPage
-} from './styledComponents';
+} from '../styledComponents';
 import { useState, useEffect } from 'react';
 import { SyncLoader } from 'react-spinners'; // 로딩 스피너 import
 
 
 
-//popular 영화 api
-const NOWPLAYING_API = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
+//upcoming 영화 api
+const UPCOMING_API = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1'
 
 
 //엑세스 토큰 옵션
@@ -23,11 +23,12 @@ const options = {
 
 
 
-function NowPlayingPage() {
+function UpComing() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getMovies(NOWPLAYING_API, options);
+    getMovies(UPCOMING_API, options);
+
   }, []);
 
   const getMovies = (API, options) => {
@@ -52,4 +53,4 @@ function NowPlayingPage() {
   )
 }
 
-export default NowPlayingPage;
+export default UpComing;

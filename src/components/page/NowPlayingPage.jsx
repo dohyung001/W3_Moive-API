@@ -1,15 +1,15 @@
-import '../App.css';
-import MovieList from './MovieList';
+import '../../App.css';
+import MovieList from '../compo/MovieList';;
 import {
   Main, CustomSyncLoaderPage
-} from './styledComponents';
+} from '../styledComponents';
 import { useState, useEffect } from 'react';
 import { SyncLoader } from 'react-spinners'; // 로딩 스피너 import
 
 
 
-//toprate 영화 api
-const TOPRATEDPAGE_API = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
+//popular 영화 api
+const NOWPLAYING_API = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
 
 
 //엑세스 토큰 옵션
@@ -23,11 +23,11 @@ const options = {
 
 
 
-function TopRatedPage() {
+function NowPlayingPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    getMovies(TOPRATEDPAGE_API, options);
+    getMovies(NOWPLAYING_API, options);
   }, []);
 
   const getMovies = (API, options) => {
@@ -43,13 +43,13 @@ function TopRatedPage() {
   return (
 
     <div>
-      {loading ? (<CustomSyncLoaderPage><SyncLoader /></CustomSyncLoaderPage>) : (<Main>
-        <MovieList movies={movies} />
-      </Main>)}
-
-
+      {loading ? <CustomSyncLoaderPage><SyncLoader /></CustomSyncLoaderPage> :
+        <Main>
+          <MovieList movies={movies} />
+        </Main>
+      }
     </div>
   )
 }
 
-export default TopRatedPage;
+export default NowPlayingPage;

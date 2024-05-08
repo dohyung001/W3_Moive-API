@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { MDPBackground, MDPBackgroundImg, MDPContentWrapper, MDPContent, MDPContentText, MDPContentTextTitle, MDPContentTextOverview, MDPContentTextStars, MDPContentTextVote } from './styledComponents';
+import { MDPBackground, MDPBackgroundImg, MDPContentWrapper, MDPContent, MDPContentText, MDPContentTextTitle, MDPContentTextOverview, MDPContentTextStars, MDPContentTextVote } from '../styledComponents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
