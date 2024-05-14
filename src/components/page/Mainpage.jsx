@@ -1,78 +1,74 @@
-import { WelcomeText, MainTest, Find, FindText, FindInput, FindInputButton, FindInputWrapper, MovieSeach } from '../styledComponents'
+import { useState, useEffect } from 'react';
+import { WelcomeText, MainTest, Find, FindText, FindInput, FindInputButton, FindInputWrapper, MovieSeach } from '../styledComponents';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
-import { useState, useEffect } from 'react';
 import MovieList from '../compo/MovieList';
-
-
-
-// Debounce 함수 정의
-function debounce(func, delay) {
-  let timer;
-  return function (...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => func.apply(this, args), delay);
-  };
-}
-
 
 export default function MainPage() {
   const [movies, setMovies] = useState([]);
-  const [Query, setQuery] = useState(''); //영화 검색 API 쿼리 입력
+  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState(''); // 영화 검색 API 쿼리 입력
 
-  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(Query)}&include_adult=false&language=en-US&page=1`
+  const SEARCH_API = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`;
 
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjFlMWVhOTgxMTEyYmU0ZjFkNDRjZjRjNjQ0YjQ5MCIsInN1YiI6IjY2MWQxNmRmMWU2NDg5MDE2MmQ0NmUwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PCFh8WM0vqJVx9y6l_tMwcORv61ElmODiBYPxlQN2d4'
+      Authorization: 'Bearer your_token_here'
     }
   };
 
-  //쿼리 입력
-  function handleChange(e) {
-    setQuery(e.target.value)
-
+  // Debounce 함수 정의
+  function debounce(func, delay) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
   }
-  //영화 호출 함수
-  const getMovies = (API, options) => {
-    fetch(API, options)
+
+  //입력후 0.5초후 호출 함수
+  const handleChange = debounce((e) => {
+    setQuery(e.target.value);
+    setIsLoading(true);
+  }, 500);
+
+  // 영화 호출 함수
+  const getMovies = () => {
+    fetch(SEARCH_API, options)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.results);
-      }).catch(() => { })
-      ;
+        setIsLoading(false);
+      }).catch(() => {
+        setIsLoading(false);
+      });
   }
 
   useEffect(() => {
-    if (Query) getMovies(SEARCH_API, options);
-    const debouncedFetchData = debounce(getMovies, 500); // 입력이 멈춘 후 0.5초 후에 요청을 보냄
-    debouncedFetchData();
+    if (query) getMovies();
 
-    return () => clearTimeout(debouncedFetchData);
-  }, [Query]);
-
-
-
+  }, [query]);
 
   return (
     <MainTest>
       <WelcomeText>환영합니다</WelcomeText>
       <Find>
-        <FindText>Find your movies !</FindText>
+        <FindText>Find your movies!</FindText>
         <FindInputWrapper>
-          <FindInput type="text" onChange={handleChange}></FindInput>
+          <FindInput type="text" onChange={(e) => handleChange(e)}></FindInput>
           <FindInputButton><FontAwesomeIcon icon={faSearch} /></FindInputButton>
         </FindInputWrapper>
-        {Query ? <MovieSeach>
-          <MovieList movies={movies} />
-
-        </MovieSeach> : <></>
-
-        }
+        {query && (
+          <MovieSeach>
+            {isLoading ? <FindInputWrapper>데이터를 받아오는 중입니다</FindInputWrapper> :
+              <MovieList movies={movies} />}
+          </MovieSeach>
+        )}
       </Find>
     </MainTest>
-  )
+  );
 }

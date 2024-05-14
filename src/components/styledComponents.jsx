@@ -74,13 +74,14 @@ export const MovieCoverText = styled.div`
 `;
 
 export const UPNavbar = styled.nav`
-position: stickey;
+position: sticky;
+top:0px;
   height: 60px;
   background-color: rgb(23,25,50);
   display:flex;
   justify-content: space-between;
   align-items: center;
-
+  z-index: 999;
 `;
 
 export const UPNavbarLists = styled.div`
@@ -110,12 +111,14 @@ export const UPNavbarListPage = styled(UPNavbarList)`
 `;
 
 export const DOWNFooter = styled.footer
-  `position: stickey;
+  `position: sticky;
+  bottom:0px;
   padding-left: 20px;
   height: 60px;
   background-color: rgb(23,25,50);
   display:flex;
   align-items: center;
+  z-index: 998;
 `;
 
 export const DOWNFooterText = styled.p`
@@ -188,6 +191,7 @@ width:100vw;
 height:100vh;
 background-color:rgb(34, 38, 76);
 display:flex;
+flex-direction: column;
 justify-content:center;
 align-items:center;
 position:relative;
@@ -195,15 +199,16 @@ position:relative;
 
 export const MDPBackgroundImg = styled.img`
 width:100vw;
-height:100vh;
+height:100%;
 position: absolute;
+overflow: hidden;
 opacity: 0.1;
 z-index: 100;
 `
 export const MDPContentWrapper = styled.div`
 width:80%;
 height:600px%;
-
+transform: translateY(-80px);
 display:flex;
 align-items: center;
 justify-content: center;
@@ -219,7 +224,7 @@ flex-direction: column;
 padding-top: 100px;
 margin-left:100px;
 `
-export const MDPContentText = styled.p`
+export const MDPContentText = styled.div`
 font-size:25px;
 margin-top:35px;
 font-weight: 700;
@@ -257,9 +262,9 @@ align-items:center;
 `
 export const SignupPageBackground = styled(MDPBackground)`
 justify-content: center;
-align-items: start;
+align-items: center;
 padding-top: 30px;
-
+width:100vw;
 `
 export const SignupPageMainWrapper = styled.form`
 display:flex;
@@ -319,7 +324,6 @@ border-radius: 10px;
 margin: 20px 40px 20px 40px;
 overflow-y: auto;
 
-
 &::-webkit-scrollbar {
   width: 7px;
 }
@@ -329,6 +333,36 @@ overflow-y: auto;
   border-radius: 5px; }
 
 `
-export const MainPageMovieContainer = styled(MovieContainer)`
+export const ProfileImg = styled.img`
+width:100px;
+height:100px;
+border-radius:100px;
 
+`
+
+export const MDPCrewWrapper = styled(MDPBackground)`
+width:80%;
+height:auto;
+margin-left:200px;
+padding-right:200px;
+
+flex-direction: row;
+flex-wrap: wrap;
+white-space:normal;
+`
+
+export const Profile = styled.div`
+width:150px;
+height:150px;
+background-color:inherit;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+`
+
+export const MDPCreditBackground = styled(MDPBackground)`
+
+height: auto;
 `

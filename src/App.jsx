@@ -35,7 +35,7 @@ function App() {
           <Route path="/top" element={<TopRatedPage />} />
           <Route path="/up" element={<UpComingpage />} />
 
-          <Route path="/movie/:moviename" element={<MoviedetailPage />} />{/*동적 라우팅*/}
+          <Route path="/movie/:id" element={<MoviedetailPage />} />{/*동적 라우팅*/}
           <Route path="*" element={<NotFoundPage />} />{/*잘못된 경로*/}
         </Routes>
         <Footer />

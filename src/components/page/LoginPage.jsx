@@ -1,4 +1,4 @@
-import { SignupPageBackground, SignupPageMainWrapper, SignupPageTitle, SignupPageInput, SignupPageSubmit, SignupPageSubLinks, SignupPageLink, SignupPageError } from '../styledComponents';
+import { SignupPageBackground, SignupPageMainWrapper, SignupPageTitle, SignupPageInput, SignupPageSubmit } from '../styledComponents';
 
 
 
