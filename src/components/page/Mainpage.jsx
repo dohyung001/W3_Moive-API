@@ -15,7 +15,7 @@ export default function MainPage() {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer your_token_here'
+      Authorization: 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjFlMWVhOTgxMTEyYmU0ZjFkNDRjZjRjNjQ0YjQ5MCIsInN1YiI6IjY2MWQxNmRmMWU2NDg5MDE2MmQ0NmUwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PCFh8WM0vqJVx9y6l_tMwcORv61ElmODiBYPxlQN2d4'
     }
   };
 
@@ -41,7 +41,7 @@ export default function MainPage() {
     fetch(SEARCH_API, options)
       .then((res) => res.json())
       .then((data) => {
-        setMovies(data.results);
+        setMovies(data.results || []);
         setIsLoading(false);
       }).catch(() => {
         setIsLoading(false);
@@ -65,7 +65,7 @@ export default function MainPage() {
         {query && (
           <MovieSeach>
             {isLoading ? <FindInputWrapper>데이터를 받아오는 중입니다</FindInputWrapper> :
-              <MovieList movies={movies} />}
+              <MovieList movies={movies || []} />}
           </MovieSeach>
         )}
       </Find>
