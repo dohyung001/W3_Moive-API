@@ -65,6 +65,8 @@ function MoviedetailPage() {
   let k = 0;
   //사진이 없으면 다른 이미지로 처리
   credit.forEach((e) => profiles.push(<Profile key={++k}>{e.profile_path ? <ProfileImg key={k} src={`https://image.tmdb.org/t/p/w500${e.profile_path}`} /> : <ProfileImg key={k} src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz7ztleRwzXhFdiwBYqZ8cib9RvEsukVVUS3niN1YQ&s`} />}
+
+  
     {e.name}
   </Profile>));
 

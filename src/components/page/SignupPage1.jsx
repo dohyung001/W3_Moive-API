@@ -1,12 +1,15 @@
 import { SignupPageBackground, SignupPageMainWrapper, SignupPageTitle, SignupPageInput, SignupPageSubmit, SignupPageSubLinks, SignupPageLink, SignupPageError } from '../styledComponents';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+
+
 function SignupPage() {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-  const inputArr = ["username", "email", "age", "password", "passwordConfirm"];
+  const inputArr = ["username", "id", "email", "age", "password", "passwordConfirm"];
 
 
 
@@ -18,9 +21,11 @@ function SignupPage() {
     // 각 입력 값에 대한 유효성 검사
     switch (name) {
       case "username":
-        if (value.trim() === '') {
-          errorMessage = '이름을 입력해주세요!';
-        }
+        if (value.trim() === '') errorMessage = '이름을 입력해주세요!';
+        break;
+      case "id":
+        if (value.trim() === '') errorMessage = '아이디를 입력해주세요!';
+
         break;
       case "email":
         if (typeof value !== 'string') errorMessage = '이메일을 입력해주세요!';
@@ -87,6 +92,7 @@ function SignupPage() {
       if (!formData[key]) {
         switch (key) {
           case "username": newErrors[key] = '이름을 입력해주세요!'; break;
+          case "id": newErrors[key] = '아이디를 입력해주세요!'; break;
           case "email": newErrors[key] = '이메일을 입력해주세요!'; break;
           case "age": newErrors[key] = '나이를 입력해주세요!'; break;
           case "password": newErrors[key] = '비밀번호를 입력해주세요!'; break;
@@ -101,11 +107,41 @@ function SignupPage() {
       setErrors(newErrors);
       return;
     }
-    // 에러가 없는 경우
 
-    console.log('폼 데이터 제출:', formData);
-    alert('폼 데이터 제출:', formData);
-    navigate('/login');
+    // 에러가 없는 경우 회원가입 요청
+    fetch('http://localhost:8080/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: formData.username,
+        email: formData.email,
+        age: formData.age,
+        username: formData.id,
+        password: formData.password,
+        passwordCheck: formData.passwordConfirm
+      })
+    })
+      .then(response => {
+        if (response.status === 201) {
+          return response.json(); // 성공적으로 회원가입 완료
+        } else {
+          return response.json().then(data => {
+            throw new Error(data.message || "회원가입에 실패했습니다."); // 서버에서 보낸 에러 메시지 사용
+          });
+        }
+      })
+      .then(data => {
+        console.log('회원가입 성공:', data);
+        alert('회원가입 성공!');
+        navigate('/login'); // 로그인 페이지로 이동
+      })
+      .catch(error => {
+        console.error('회원가입 에러:', error);
+        alert(error.message); // 에러 메시지 표시
+      });
+
   };
 
 
@@ -117,6 +153,10 @@ function SignupPage() {
         <div>
           <SignupPageInput type="text" name="username" placeholder="이름을 입력해주세요" onChange={handleChange} />
           {errors.username && <SignupPageError>{errors.username}</SignupPageError>}
+        </div>
+        <div>
+          <SignupPageInput type="text" name="id" placeholder="아이디를 입력해주세요" onChange={handleChange} />
+          {errors.id && <SignupPageError>{errors.id}</SignupPageError>}
         </div>
         <div>
           <SignupPageInput type="text" name="email" placeholder="이메일을 입력해주세요" onChange={handleChange} />
@@ -139,14 +179,14 @@ function SignupPage() {
           type="submit"
           onClick={handleSubmit}
           disabled={Object.values(errors).some(error => !!error)}
-          style={{ backgroundColor: Object.values(errors).some(error => !!error) || Object.keys(formData).length < 5 ? 'white' : 'yellow' }}
+          style={{ backgroundColor: Object.values(errors).some(error => !!error) || Object.keys(formData).length < 6 ? 'white' : 'yellow' }}
         >
           제출하기
         </SignupPageSubmit>
 
         <SignupPageSubLinks>
           <SignupPageLink>이미 아이디가 있으신가요?</SignupPageLink>
-          <SignupPageLink>로그인 페이지로 이동하기</SignupPageLink>
+          <SignupPageLink onClick={() => navigate('/login')}>로그인 페이지로 이동하기</SignupPageLink>
         </SignupPageSubLinks>
 
       </SignupPageMainWrapper>

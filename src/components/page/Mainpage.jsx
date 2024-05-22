@@ -8,6 +8,10 @@ export default function MainPage() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState(''); // 영화 검색 API 쿼리 입력
+  const [name, setName] = useState(''); // 유저의 이름 
+  const [isLogin, setIsLogin] = useState(false); // 영화 검색 API 쿼리 입력
+  const [isBannerLoading, setIsBannerLoading] = useState(false);
+
 
   const SEARCH_API = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`;
 
@@ -48,14 +52,56 @@ export default function MainPage() {
       });
   }
 
+  //영화 호출
   useEffect(() => {
     if (query) getMovies();
-
+    console.log(isLogin)
   }, [query]);
+
+
+  //스토리지
+  useEffect(() => {
+    if (localStorage.getItem(localStorage.key(0))) {
+      const token = localStorage.getItem(localStorage.key(0)) || "";
+      setIsBannerLoading(true);
+      fetch('http://localhost:8080/auth/me', {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+
+      })
+        .then(async (response) => {
+          if (response.status === 200) {
+            setIsBannerLoading(false);
+            return response.json(); // 성공
+          } else {
+            return response.json().then(data => {
+              throw new Error(data.message || "실패");
+            });
+          }
+        })
+        .then(data => {
+          setName(data.name)
+        })
+        .catch(error => {
+          console.error('에러:', error);
+        });
+    }
+  }, [])
+
+
+  useEffect(() => {
+    if (localStorage.key(0)) {
+      setIsLogin(true)
+    } else setIsLogin(false);
+    console.log(localStorage.key(0));
+  }, [localStorage.key(0)]);
 
   return (
     <MainTest>
-      <WelcomeText>환영합니다</WelcomeText>
+      <WelcomeText>{isBannerLoading ? "배너에 로딩 중..." : isLogin ? `${name}님 환영합니다` : '환영합니다'}</WelcomeText>
       <Find>
         <FindText>Find your movies!</FindText>
         <FindInputWrapper>

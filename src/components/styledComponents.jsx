@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 export const Main = styled.div`
 background-color: rgb(34, 38, 76);
 width: 100vw;
-height: 100vh;
+height: calc(100vh - 120px);
 overflow-y: scroll;
+
 `;
+
 export const MainTest = styled(Main)`
 overflow-y: hidden;
 
@@ -99,7 +101,17 @@ export const UPNavbarList = styled(Link)`
   }
   text-decoration: none;
 `;
-
+export const Logout = styled(Link)`
+  font-size: large;
+  font-weight: 400;
+  padding-left: 20px;
+  padding-right: 20px;
+  color:yellow;
+  &:hover {
+    font-weight: bold;
+  }
+  text-decoration: none;
+`;
 export const UPNavbarListLogin = styled(UPNavbarList)`
 color:yellow;
 font-weight: 600;
@@ -365,4 +377,19 @@ flex-direction:column;
 export const MDPCreditBackground = styled(MDPBackground)`
 
 height: auto;
+`
+export const ShiftPage = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+background-color: rgb(34, 38, 76);
+`
+
+export const InfiniteyncLoaderPage = styled.div`
+
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height: 60px;
 `
