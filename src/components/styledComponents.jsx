@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { FaBars } from "react-icons/fa";
 
 export const Main = styled.div`
 background-color: rgb(34, 38, 76);
@@ -84,11 +84,15 @@ top:0px;
   justify-content: space-between;
   align-items: center;
   z-index: 999;
+
 `;
 
 export const UPNavbarLists = styled.div`
 
   display:flex;
+  @media (max-width: 1024px) {
+    display:none;
+  }
 `;
 
 export const UPNavbarList = styled(Link)`
@@ -164,6 +168,15 @@ export const FindText = styled.div`
   justify-content:center;
   font-weight: 700;
   font-size: 40px;
+  @media (max-width: 1400px) {
+    font-size: 30px;
+  }
+  @media (max-width: 1000px) {
+    font-size: 25px;
+  }
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 export const FindInputWrapper = styled.div`
 display: flex;
@@ -177,6 +190,15 @@ export const FindInput = styled.input`
   padding-left:20px;
   margin-right:20px;
   color:black;
+  @media (max-width: 1400px) {
+    width: 350px;
+  }
+  @media (max-width: 1000px) {
+    width: 300px;
+  }
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 `;
 export const FindInputButton = styled.div`
   width:30px;
@@ -219,11 +241,14 @@ z-index: 100;
 `
 export const MDPContentWrapper = styled.div`
 width:80%;
-height:600px%;
-transform: translateY(-80px);
+height:600px;
+transform: translateY(-40px);
 display:flex;
 align-items: center;
 justify-content: center;
+@media (max-width: 1400px) {
+  flex-direction:column;
+}
 `
 
 export const MDPContent = styled.div`
@@ -235,6 +260,9 @@ flex-direction: column;
 
 padding-top: 100px;
 margin-left:100px;
+@media (max-width: 1400px) {
+  padding-top: 0px;
+}
 `
 export const MDPContentText = styled.div`
 font-size:25px;
@@ -299,7 +327,15 @@ border-radius:15px;
 margin-top: 20px;
 padding-left:20px;
 color:black;
-
+@media (max-width: 1400px) {
+  width: 520px;
+}
+@media (max-width: 1000px) {
+  width: 460px;
+}
+@media (max-width: 768px) {
+  width: 400px;
+}
 `
 export const SignupPageSubmit = styled.button`
 width: 630px;
@@ -307,9 +343,19 @@ height: 45px;
 border-radius:15px;
 margin-top: 20px;
 margin-bottom: 40px;
+
 color:black;
 font-weight: 700;
 font-size:22px;
+@media (max-width: 1400px) {
+  width: 550px;
+}
+@media (max-width: 1000px) {
+  width: 490px;
+}
+@media (max-width: 768px) {
+  width: 424px;
+}
 `
 
 export const SignupPageSubLinks = styled.div`
@@ -393,3 +439,37 @@ justify-content:center;
 width:100%;
 height: 60px;
 `
+export const Sidebar = styled.div`
+  padding-top:20px;
+  padding-left:10px;
+  position: fixed;
+  top: 60px;
+  right: ${props => props.isOpen ? '0' : '-100%'};
+  width: 100vw;
+  height: 100%;
+  background: rgb(34, 38, 76);
+  transition: right 0.3s ease;
+  z-index: 50;
+  display:flex;
+  flex-direction:column;
+
+
+  }
+`;
+
+export const SideFaBar = styled(FaBars)`
+margin-right: 50px;
+color:white;
+display:none;
+
+@media (max-width: 1024px) {
+  display:flex;
+
+}
+`
+export const UPNavbarListPageSide = styled(UPNavbarListPage)`
+margin-top:30px;
+
+`
+export const LogoutSide = styled(Logout)
+  ``

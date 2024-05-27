@@ -55,7 +55,7 @@ export default function MainPage() {
   //영화 호출
   useEffect(() => {
     if (query) getMovies();
-    console.log(isLogin)
+
   }, [query]);
 
 
@@ -96,7 +96,7 @@ export default function MainPage() {
     if (localStorage.key(0)) {
       setIsLogin(true)
     } else setIsLogin(false);
-    console.log(localStorage.key(0));
+
   }, [localStorage.key(0)]);
 
   return (
